@@ -1,0 +1,52 @@
+﻿@page "/vote"
+
+<h3><b>VOTE HERE!</b></h3>
+
+<h6>Welcome @name</h6>
+
+<h6 class=".text-danger"> Vote count: @voteCount<br /><br /> @message</h6>
+
+<form>
+    <div class="form-group">
+        <label for="name" class="col-sm-2 col-form-label">Voter Name</label><br>
+        <input type="text" class="form-control" id="name" @bind="name" name="name"><br>
+
+    </div>
+    <div class="form-group">
+        <label for="vote" class="col-sm-2 col-form-label">Vote Value</label><br>
+        <input type="number" class="form-control" id="vote" @bind="voteValue" name="vote count"><br>
+    </div>
+</form>
+<button class="btn btn-primary" @onclick="VoteCount">Vote</button>
+
+@code { private String voteCount = "";
+            private int voteValue;
+            public String name;
+            private Boolean btnFlag = false;
+            private String message;
+
+            private void VoteCount()
+            {
+                btnFlag = true;
+
+                if (voteValue > 5)
+                {
+
+                    voteCount = "Invalid - Number should not be greater than 5";
+                    message = "";
+                }
+                else if (voteValue < 1)
+                {
+                    voteCount = "Invalid - Number should not be less than 1";
+                    message = "";
+                }
+                else
+                {
+                    if (btnFlag)
+                    {
+                        voteCount = voteValue.ToString();
+                        message = "Thank you for your vote!";
+
+                    }
+                }
+            } }
